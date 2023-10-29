@@ -30,9 +30,10 @@ app.MapControllers();
 using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
 {
     var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    context.Database.EnsureCreated();
-
-    context.Customers.Add(new Customer(Guid.Parse("6b6c6976-3322-4f22-a157-2ef09ecc393c"), "User Name", "User Surname"));
+    if (context.Database.EnsureCreated())
+    {
+        context.Customers.Add(new Customer(Guid.Parse("6b6c6976-3322-4f22-a157-2ef09ecc393c"), "User Name", "User Surname"));
+    }
 
     context.SaveChanges();
 }

@@ -13,7 +13,9 @@ public sealed class AccountConfiguration : IEntityTypeConfiguration<Account>
             .HasKey(x => x.Id);
 
         builder
-            .HasOne<Customer>();
+            .HasOne<Customer>()
+            .WithMany()
+            .HasForeignKey(x => x.CustomerId);
 
         builder
             .Property(x => x.Credits);

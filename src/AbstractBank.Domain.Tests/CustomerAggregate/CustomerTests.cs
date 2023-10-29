@@ -55,61 +55,6 @@ public sealed class CustomerTests
     }
 
     [Fact]
-    public void AddAccount_AccountIdIsEmpty_Throws()
-    {
-        // Arrange
-        var id = Guid.NewGuid();
-        var sut = CreateCustomer(id);
-
-        // Act
-        Action act = () => sut.AddAccount(Guid.Empty);
-
-        // Assert
-        act
-            .Should()
-            .Throw<DomainException>()
-            .WithMessage("Account id can't be empty!");
-    }
-
-    [Fact]
-    public void AddAccount_AccountAlreadyAdded_Throws()
-    {
-        // Arrange
-        var id = Guid.NewGuid();
-        var accountId = Guid.NewGuid();
-        var sut = CreateCustomer(id);
-
-        sut.AddAccount(accountId);
-
-        // Act
-        Action act = () => sut.AddAccount(accountId);
-
-        // Assert
-        act
-            .Should()
-            .Throw<DomainException>()
-            .WithMessage($"Account with id '{accountId}' already part of the customer.");
-    }
-
-    [Fact]
-    public void AddAccount_AllConditionsMet_Success()
-    {
-        // Arrange
-        var id = Guid.NewGuid();
-        var accountId = Guid.NewGuid();
-        var sut = CreateCustomer(id);
-
-        // Act
-        sut.AddAccount(accountId);
-
-        // Assert
-        sut
-            .Accounts
-            .Should()
-            .Contain(accountId);
-    }
-
-    [Fact]
     public void SetAccount_AccountIdIsEmpty_Throws()
     {
         // Arrange
@@ -127,32 +72,12 @@ public sealed class CustomerTests
     }
 
     [Fact]
-    public void SetAccount_AccountIsNotPartOfACustomer_Throws()
-    {
-        // Arrange
-        var id = Guid.NewGuid();
-        var accountId = Guid.NewGuid();
-        var sut = CreateCustomer(id);
-
-        // Act
-        Action act = () => sut.SetCurrentAccount(accountId);
-
-        // Assert
-        act
-            .Should()
-            .Throw<DomainException>()
-            .WithMessage($"Account with id '{accountId}' is not part of the customer.");
-    }
-
-    [Fact]
     public void SetAccount_AllConditionsMet_Success()
     {
         // Arrange
         var id = Guid.NewGuid();
         var accountId = Guid.NewGuid();
         var sut = CreateCustomer(id);
-
-        sut.AddAccount(accountId);
 
         // Act
         sut.SetCurrentAccount(accountId);
