@@ -57,6 +57,8 @@ public sealed class GetCustomerOverviewByIdQueryHandlerTests
         var transactions = new List<Transaction> { transaction };
         var request = new GetCustomerOverviewByIdQuery(customerId);
 
+        customer.SetCurrentAccount(accountId);
+
         _customerRepository
             .FindById(customerId)
             .Returns(customer);
@@ -76,6 +78,7 @@ public sealed class GetCustomerOverviewByIdQueryHandlerTests
         response.CustomerId.Should().Be(customerId);
         response.CustomerName.Should().Be(Name);
         response.CustomerSurname.Should().Be(Surname);
+        response.CurrentAccountId.Should().Be(accountId);
         response
             .Accounts
             .Should()

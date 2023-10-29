@@ -13,18 +13,26 @@ namespace AbstractBank.Domain.Tests.AccountAggregate
         {
             // Arrange
             var accountId = Guid.NewGuid();
-            var sut = new Account(accountId, Guid.NewGuid());
+            var customerId = Guid.NewGuid();
+            var sut = new Account(accountId, customerId);
 
             // Act
             sut.AddTransaction(100);
 
             // Assert
             sut.Credits.Should().Be(100);
-            sut.Events.Should().HaveCount(1);
-            sut.Events.Should().Contain(x =>
-                x.As<AccountCreditsChangedDomainEvent>().AccountId == accountId &&
-                x.As<AccountCreditsChangedDomainEvent>().PreviousCredits == 0 &&
-                x.As<AccountCreditsChangedDomainEvent>().NewCredits == 100);
+            sut.Events.Should().HaveCount(2);
+
+            var newAccountEvent = sut.Events.Single(x => x is NewAccountCreatedDomainEvent) as NewAccountCreatedDomainEvent;
+
+            newAccountEvent.CustomerId.Should().Be(customerId);
+            newAccountEvent.AccountId.Should().Be(accountId);
+
+            var creditsChangedEvent = sut.Events.Single(x => x is AccountCreditsChangedDomainEvent) as AccountCreditsChangedDomainEvent;
+
+            creditsChangedEvent.AccountId.Should().Be(accountId);
+            creditsChangedEvent.PreviousCredits.Should().Be(0);
+            creditsChangedEvent.NewCredits.Should().Be(100);
         }
     }
 }

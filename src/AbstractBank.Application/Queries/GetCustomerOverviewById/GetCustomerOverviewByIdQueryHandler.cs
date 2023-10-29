@@ -40,6 +40,7 @@ public sealed class GetCustomerOverviewByIdQueryHandler : IRequestHandler<GetCus
             customer.Id,
             customer.Name,
             customer.Surname,
+            customer.CurrentAccount,
             await
                 accounts
                     .ToAsyncEnumerable()

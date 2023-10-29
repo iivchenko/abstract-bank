@@ -1,5 +1,4 @@
-﻿using AbstractBank.Domain.AccountAggregate;
-using AbstractBank.Domain.CustomerAggregate;
+﻿using AbstractBank.Domain.CustomerAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

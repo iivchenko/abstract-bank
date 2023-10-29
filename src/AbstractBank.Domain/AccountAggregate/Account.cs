@@ -17,6 +17,8 @@ public sealed class Account : BaseEntity, IAggregateRoot<Guid>
         Id = id;
         CustomerId = customerId;
         Credits = 0;
+
+        Publish(new NewAccountCreatedDomainEvent(Id, CustomerId));
     }
 
     public Guid Id { get; private set; }
