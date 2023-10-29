@@ -1,4 +1,4 @@
-﻿using AbstractBank.Domain.AccountAggregate;
+﻿using AbstractBank.Domain.Common;
 using AbstractBank.Domain.CustomerAggregate;
 
 namespace AbstractBank.Domain.Tests.CustomerAggregate;

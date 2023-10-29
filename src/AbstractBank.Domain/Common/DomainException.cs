@@ -1,4 +1,4 @@
-﻿namespace AbstractBank.Domain.AccountAggregate;
+﻿namespace AbstractBank.Domain.Common;
 
 public class DomainException : Exception
 {
