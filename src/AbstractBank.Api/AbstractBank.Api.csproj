@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\AbstractBank.Application\AbstractBank.Application.csproj" />
+    <ProjectReference Include="..\AbstractBank.Infrastructure\AbstractBank.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
