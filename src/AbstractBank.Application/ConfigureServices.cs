@@ -15,6 +15,7 @@ public static class ConfigureServices
         {
             cfg.RegisterServicesFromAssembly(assembly);
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(CommandCommitBehavior<,>));
         });
 
         services.AddValidatorsFromAssembly(assembly);
