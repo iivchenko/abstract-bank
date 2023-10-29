@@ -7,7 +7,6 @@ public sealed class CustomerTests
 {
     private const string Name = "Name";
     private const string Surname = "Surname";
-    private const string Code = "CODE_01";
 
     [Fact]
     public void Create_IdIsEmpty_Throws()

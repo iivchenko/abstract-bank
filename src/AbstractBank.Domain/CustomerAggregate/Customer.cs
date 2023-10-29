@@ -31,7 +31,7 @@ public sealed class Customer : IAggregateRoot<Guid>
 
     public CustomerSurname Surname { get; private set; }
 
-    public Guid CurrentAccount { get; private set; }
+    public Guid? CurrentAccount { get; private set; }
 
     public IReadOnlyCollection<Guid> Accounts { get => _accounts; }
 
